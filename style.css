@@ -1011,22 +1011,6 @@ table.exercise-table {
   }
 }
 
-.pr-btn {
-  height: 36px;
-  padding: 0 12px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  color: var(--text-muted);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.15s;
-}
-
-.pr-btn:hover { border-color: var(--gold); color: var(--gold); }
-.pr-btn.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
 
 /* ==============================================
    HISTORY ENTRIES — month-grouped timeline
@@ -2304,7 +2288,6 @@ table.exercise-table {
     width: 100%;
   }
 
-  .pr-btn { grid-column: 1 / -1; }
 
   .card-head { flex-direction: column; align-items: flex-start; }
   .card-head .filter-select { width: 100%; }
@@ -2342,7 +2325,6 @@ table.exercise-table {
 
   /* Dropdowns & filter buttons */
   .filter-select   { background-color: rgba(0, 0, 0, 0.04); }
-  .pr-btn          { background-color: rgba(0, 0, 0, 0.04); }
 
   /* Badges */
   .type-badge      { background: rgba(0, 0, 0, 0.06); }

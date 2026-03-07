@@ -141,7 +141,7 @@ const BADGE_COLORS = [
 // STATE
 // ==============================================
 let currentWorkout = 'push';
-let showOnlyPR = false;
+
 let logToDelete = null;
 
 // Builder state
@@ -829,15 +829,6 @@ function calcStreak(history) {
 // ==============================================
 // HISTORY
 // ==============================================
-function togglePR() {
-  showOnlyPR = !showOnlyPR;
-  const btn = document.getElementById('pr-button');
-  if (btn) {
-    btn.classList.toggle('active', showOnlyPR);
-    btn.innerHTML = showOnlyPR ? '✕ Records off' : 'Records';
-  }
-  renderHistory();
-}
 
 function renderProgStatPills() {
   const el = document.getElementById('prog-stat-pills');
@@ -905,7 +896,6 @@ function renderHistory() {
     filtered.forEach(session => {
       const match = session.exercises.find(ex => ex.exercise === exFilter);
       if (!match) return;
-      if (showOnlyPR && !isPersonalRecord(match.exercise, match.weight, history, session.timestamp)) return;
       const isPR = isPersonalRecord(match.exercise, match.weight, history, session.timestamp);
       const d = new Date(session.timestamp);
       const dateStr = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
@@ -968,9 +958,7 @@ function renderHistory() {
 
     group.sessions.forEach(session => {
       const relevantExercises = session.exercises.filter(ex => {
-        const matchEx = exFilter === 'all' || ex.exercise === exFilter;
-        if (showOnlyPR) return matchEx && isPersonalRecord(ex.exercise, ex.weight, history, session.timestamp);
-        return matchEx;
+        return exFilter === 'all' || ex.exercise === exFilter;
       });
 
       if (relevantExercises.length === 0) return;
