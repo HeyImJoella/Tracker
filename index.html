@@ -125,58 +125,43 @@
             <h1 class="page-title">Progression</h1>
           </div>
         </div>
-        <!-- Chart card -->
-        <div class="card chart-card">
-          <div class="card-head">
-            <h3>Weight Progression</h3>
-            <select id="chart-exercise" onchange="renderChart()" class="filter-select"></select>
-          </div>
-          <div id="chart-wrap">
-            <svg id="prog-chart" width="100%" height="220"></svg>
-            <div id="chart-empty" class="chart-empty" style="display:none">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <p>Log a workout to see your progression</p>
+
+        <!-- Two-column layout -->
+        <div class="prog-layout">
+
+          <!-- Left: chart -->
+          <div class="card chart-card prog-chart-col">
+            <div class="card-head">
+              <h3>Weight Progression</h3>
+              <select id="chart-exercise" onchange="renderChart()" class="filter-select"></select>
+            </div>
+            <div id="chart-wrap">
+              <svg id="prog-chart" width="100%" height="100%"></svg>
+              <div id="chart-empty" class="chart-empty" style="display:none">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <p>Log a workout to see your progression</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- History card -->
-        <div class="card">
-          <div class="card-head history-head">
-            <h3>Session History</h3>
-            <div class="history-filters">
-              <select id="filter-exercise" onchange="renderHistory()" class="filter-select">
-                <option value="all">All Exercises</option>
-              </select>
-              <select id="filter-month" onchange="renderHistory()" class="filter-select">
-                <option value="all">All Months</option>
-                <option value="0">January</option>
-                <option value="1">February</option>
-                <option value="2">March</option>
-                <option value="3">April</option>
-                <option value="4">May</option>
-                <option value="5">June</option>
-                <option value="6">July</option>
-                <option value="7">August</option>
-                <option value="8">September</option>
-                <option value="9">October</option>
-                <option value="10">November</option>
-                <option value="11">December</option>
-              </select>
-              <select id="filter-year" onchange="renderHistory()" class="filter-select">
-                <option value="all">All Years</option>
-                <option value="2026">2026</option>
-                <option value="2025">2025</option>
-                <option value="2024">2024</option>
-              </select>
-              <button class="pr-btn" id="pr-button" onclick="togglePR()">🏆 Records</button>
+          <!-- Right: history panel -->
+          <div class="card prog-history-col">
+            <div class="card-head history-head">
+              <h3>Session History</h3>
+              <div class="history-filters">
+                <select id="filter-exercise" onchange="renderHistory()" class="filter-select">
+                  <option value="all">All Exercises</option>
+                </select>
+
+                <button class="pr-btn" id="pr-button" onclick="togglePR()">Records</button>
+              </div>
+            </div>
+            <div id="history-content"></div>
+            <div class="danger-row">
+              <button class="ghost-danger-btn" onclick="setupClearAll()">🗑️ Clear all history</button>
             </div>
           </div>
-          <div id="history-content"></div>
-        </div>
 
-        <div class="danger-row">
-          <button class="ghost-danger-btn" onclick="setupClearAll()">🗑️ Clear all history</button>
         </div>
       </div>
 
