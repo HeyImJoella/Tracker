@@ -1,0 +1,751 @@
+/* ==========================================================================
+   MCP Design System — CSS Variables Reference
+   Generated from Figma Design Tokens
+   Primitives: https://www.figma.com/design/ioCfRRkQEENymq5MK3PfC0/MCP-Design-System?node-id=18521-23204
+   Semantics:  https://www.figma.com/design/ioCfRRkQEENymq5MK3PfC0/MCP-Design-System?node-id=18522-12997
+   ========================================================================== */
+
+
+/* ==========================================================================
+   PRIMITIVES
+   ========================================================================== */
+
+:root {
+
+  color-scheme: light dark;
+
+  /* --------------------------------------------------------------------------
+     COLOR — BRAND
+     -------------------------------------------------------------------------- */
+
+  --color-brand-25:  #FDF7F5;
+  --color-brand-50:  #FAEEEA;
+  --color-brand-100: #F6DDD5;
+  --color-brand-200: #ECBCAC;
+  --color-brand-300: #E39A82;
+  --color-brand-400: #D97757;
+  --color-brand-500: #C96442;
+  --color-brand-600: #A64626;
+  --color-brand-700: #7D341C;
+  --color-brand-800: #532313;
+  --color-brand-900: #2A1109;
+  --color-brand-950: #1D0C07;
+
+  /* Alpha */
+  --color-brand-500-50: rgb(201 100 66 / 50%);
+  --color-brand-300-30: rgb(227 154 130 / 30%);
+
+
+  /* --------------------------------------------------------------------------
+     COLOR — NEUTRAL
+     -------------------------------------------------------------------------- */
+
+  --color-neutral-0:    #FFFFFF;
+  --color-neutral-50:   #FAF9F5;
+  --color-neutral-100:  #F5F4ED;
+  --color-neutral-200:  #EAE5DE;
+  --color-neutral-300:  #BEB9B0;
+  --color-neutral-400:  #928D84;
+  --color-neutral-500:  #6E6960;
+  --color-neutral-600:  #605B53;
+  --color-neutral-700:  #504B44;
+  --color-neutral-800:  #413D37;
+  --color-neutral-900:  #30302E;
+  --color-neutral-950:  #262624;
+  --color-neutral-1000: #141413;
+
+  /* Alpha — light mode default: dark overlay; overridden to light overlay in dark mode */
+  --color-neutral-500-50: rgb(12 13 14 / 50%);
+  --color-neutral-300-30: rgb(12 13 14 / 30%);
+
+  /* Alpha — fixed: always dark overlay regardless of color scheme (used for effect/drop) */
+  --color-neutral-1000-30: rgb(20 20 19 / 30%);
+
+
+  /* --------------------------------------------------------------------------
+     COLOR — BLUE
+     -------------------------------------------------------------------------- */
+
+  --color-blue-50:  #EAF1FB;
+  --color-blue-100: #D6E4F6;
+  --color-blue-200: #A9C8EE;
+  --color-blue-300: #79AAE4;
+  --color-blue-400: #4682D5;
+  --color-blue-500: #3266AD;
+  --color-blue-600: #24508E;
+  --color-blue-700: #193D72;
+  --color-blue-800: #102654;
+  --color-blue-900: #0C1E36;
+
+  /* Alpha */
+  --color-blue-500-50: rgb(50 102 173 / 50%);
+  --color-blue-300-30: rgb(121 170 228 / 30%);
+
+
+  /* --------------------------------------------------------------------------
+     COLOR — GREEN
+     -------------------------------------------------------------------------- */
+
+  --color-green-50:  #F4F9EC;
+  --color-green-100: #E9F1DC;
+  --color-green-200: #C4DFA4;
+  --color-green-300: #8DC261;
+  --color-green-400: #5FA032;
+  --color-green-500: #4A8428;
+  --color-green-600: #437426;
+  --color-green-700: #356020;
+  --color-green-800: #265B19;
+  --color-green-900: #0D2208;
+
+  /* Alpha */
+  --color-green-500-50: rgb(74 132 40 / 50%);
+  --color-green-300-30: rgb(141 194 97 / 30%);
+
+
+  /* --------------------------------------------------------------------------
+     COLOR — YELLOW
+     -------------------------------------------------------------------------- */
+
+  --color-yellow-50:  #FDF9F0;
+  --color-yellow-100: #F6EEDF;
+  --color-yellow-200: #E8D4A8;
+  --color-yellow-300: #D4AE68;
+  --color-yellow-400: #C49030;
+  --color-yellow-500: #A07224;
+  --color-yellow-600: #805C1F;
+  --color-yellow-700: #7D591C;
+  --color-yellow-800: #5A4815;
+  --color-yellow-900: #261D08;
+
+
+  /* --------------------------------------------------------------------------
+     COLOR — ORANGE
+     -------------------------------------------------------------------------- */
+
+  --color-orange-50:  #FFF5EC;
+  --color-orange-100: #FFE6CC;
+  --color-orange-200: #FFCC99;
+  --color-orange-300: #FFA85C;
+  --color-orange-400: #F5813A;
+  --color-orange-500: #D9621A;
+  --color-orange-600: #B34C10;
+  --color-orange-700: #8E3A0C;
+  --color-orange-800: #6A2A07;
+  --color-orange-900: #2A1002;
+
+
+  /* --------------------------------------------------------------------------
+     COLOR — RED
+     -------------------------------------------------------------------------- */
+
+  --color-red-50:  #FDF2F2;
+  --color-red-100: #F9E0E0;
+  --color-red-200: #F0B8B8;
+  --color-red-300: #E27878;
+  --color-red-400: #D05050;
+  --color-red-500: #B53333;
+  --color-red-600: #A73D39;
+  --color-red-700: #8A2E2A;
+  --color-red-800: #7F2C28;
+  --color-red-900: #370D0D;
+
+
+  /* --------------------------------------------------------------------------
+     SPACING
+     -------------------------------------------------------------------------- */
+
+  --spacing-0:   0px;
+  --spacing-4xs: 2px;
+  --spacing-3xs: 4px;
+  --spacing-2xs: 8px;
+  --spacing-xs:  12px;
+  --spacing-sm:  16px;
+  --spacing-md:  24px;
+  --spacing-lg:  32px;
+  --spacing-xl:  48px;
+  --spacing-2xl: 64px;
+  --spacing-3xl: 80px;
+  --spacing-4xl: 120px;
+  --spacing-5xl: 360px;
+
+
+  /* --------------------------------------------------------------------------
+     BORDER RADIUS
+     -------------------------------------------------------------------------- */
+
+  --radius-0:        0px;
+  --radius-xs:       2px;
+  --radius-sm:       4px;
+  --radius-md:       8px;
+  --radius-lg:       12px;
+  --radius-xl:       16px;
+  --radius-2xl:      24px;
+  --radius-3xl:      48px;
+  --radius-circular: 1000px;
+
+
+  /* --------------------------------------------------------------------------
+     BORDER WIDTH
+     -------------------------------------------------------------------------- */
+
+  --border-width-0:  0px;
+  --border-width-sm: 1px;
+  --border-width-md: 2px;
+  --border-width-lg: 4px;
+  --border-width-xl: 8px;
+
+
+  /* --------------------------------------------------------------------------
+     TYPOGRAPHY — FONT FAMILY
+     -------------------------------------------------------------------------- */
+
+  --font-family-heading: "Anthropic Serif Text", serif;
+  --font-family-body:    "Anthropic Sans Text", sans-serif;
+  --font-family-mono:    "JetBrains Mono", monospace;
+
+
+  /* --------------------------------------------------------------------------
+     TYPOGRAPHY — FONT WEIGHT
+     -------------------------------------------------------------------------- */
+
+  --font-weight-regular:  400;
+  --font-weight-medium:   500;
+  --font-weight-semibold: 600;
+  --font-weight-bold:     700;
+
+
+  /* --------------------------------------------------------------------------
+     TYPOGRAPHY — BODY SIZES (from typography tokens)
+     -------------------------------------------------------------------------- */
+
+  --body-size-xs: 12px;
+  --body-size-sm: 14px;
+  --body-size-md: 16px;
+  --body-size-lg: 18px;
+
+
+  /* --------------------------------------------------------------------------
+     TYPOGRAPHY — HEADING SIZES (desktop, overridden for mobile below)
+     -------------------------------------------------------------------------- */
+
+  --heading-size-xs:  18px;
+  --heading-size-sm:  20px;
+  --heading-size-md:  36px;
+  --heading-size-lg:  40px;
+  --heading-size-xl:  52px;
+  --heading-size-2xl: 64px;
+  --heading-size-3xl: 80px;
+
+
+  /* --------------------------------------------------------------------------
+     TYPOGRAPHY — BODY LINE HEIGHTS
+     -------------------------------------------------------------------------- */
+
+  --font-body-xl-line-height: 30px;
+  --font-body-lg-line-height: 27px;
+  --font-body-md-line-height: 24px;
+  --font-body-sm-line-height: 21px;
+
+
+  /* --------------------------------------------------------------------------
+     TYPOGRAPHY — HEADING LINE HEIGHTS
+     -------------------------------------------------------------------------- */
+
+  --font-heading-3xl-line-height: 80px;
+  --font-heading-2xl-line-height: 64px;
+  --font-heading-xl-line-height:  52px;
+  --font-heading-lg-line-height:  40px;
+  --font-heading-md-line-height:  36px;
+  --font-heading-sm-line-height:  20px;
+  --font-heading-xs-line-height:  18px;
+
+
+  /* --------------------------------------------------------------------------
+     LAYOUT (mobile-first defaults)
+     -------------------------------------------------------------------------- */
+
+  --layout-container-max-width: 360px;
+  --layout-container-padding:   16px;
+  --layout-column-gap:          16px;
+
+}
+
+
+/* ==========================================================================
+   TYPOGRAPHY — MOBILE HEADING OVERRIDES
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  :root {
+    --heading-size-lg:  36px;
+    --heading-size-xl:  40px;
+    --heading-size-2xl: 40px;
+    --heading-size-3xl: 40px;
+  }
+}
+
+
+/* ==========================================================================
+   LAYOUT — RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  :root {
+    --layout-container-max-width: 720px;
+    --layout-container-padding:   24px;
+    --layout-column-gap:          16px;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --layout-container-max-width: 1280px;
+    --layout-container-padding:   48px;
+    --layout-column-gap:          16px;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --layout-container-max-width: 1400px;
+    --layout-container-padding:   48px;
+    --layout-column-gap:          16px;
+  }
+}
+
+
+/* ==========================================================================
+   SEMANTICS — LIGHT MODE (default)
+   ========================================================================== */
+
+:root,
+[data-theme="light"] {
+
+  /* --------------------------------------------------------------------------
+     SURFACE — NEUTRAL
+     -------------------------------------------------------------------------- */
+
+  --surface-neutral-base:    #FAF9F5;
+  --surface-neutral-1:       #F5F4ED;
+  --surface-neutral-2:       #EAE5DE;
+  --surface-neutral-3:       #BEB9B0;
+  --surface-neutral-inverse: #262624;
+
+
+  /* --------------------------------------------------------------------------
+     SURFACE — PRIMARY
+     -------------------------------------------------------------------------- */
+
+  --surface-primary-1: #FDF7F5;
+  --surface-primary-2: #FAEEEA;
+  --surface-primary-3: #532313;
+
+
+  /* --------------------------------------------------------------------------
+     SURFACE — COMPONENT: PRIMARY
+     -------------------------------------------------------------------------- */
+
+  --surface-primary-default:  #C96442;
+  --surface-primary-hover:    #A64626;
+  --surface-primary-pressed:  #7D341C;
+  --surface-primary-focussed: #C96442;
+
+
+  /* --------------------------------------------------------------------------
+     SURFACE — COMPONENT: SECONDARY (neutral filled)
+     -------------------------------------------------------------------------- */
+
+  --surface-secondary-default:  #262624;
+  --surface-secondary-hover:    #141413;
+  --surface-secondary-pressed:  #141413;
+  --surface-secondary-focussed: #262624;
+
+
+  /* --------------------------------------------------------------------------
+     SURFACE — COMPONENT: GHOST
+     -------------------------------------------------------------------------- */
+
+  --surface-ghost-default:  #FAF9F5;
+  --surface-ghost-hover:    #EAE5DE;
+  --surface-ghost-pressed:  #EAE5DE;
+  --surface-ghost-focussed: #FAF9F5;
+
+
+  /* --------------------------------------------------------------------------
+     SURFACE — STATES
+     -------------------------------------------------------------------------- */
+
+  --surface-states-danger:     #FDF2F2;
+  --surface-states-warning:    #FFF5EC;
+  --surface-states-caution:    #FDF9F0;
+  --surface-states-success:    #F4F9EC;
+  --surface-states-info:       #EAF1FB;
+  --surface-states-tint-1:     rgb(12 13 14 / 50%);
+  --surface-states-tint-2:     rgb(12 13 14 / 30%);
+  --surface-states-disabled-1: #EAE5DE;
+  --surface-states-disabled-2: #BEB9B0;
+  --surface-states-skeleton-1: #F5F4ED;
+  --surface-states-skeleton-2: #EAE5DE;
+
+
+  /* --------------------------------------------------------------------------
+     SURFACE — SYSTEM
+     -------------------------------------------------------------------------- */
+
+  --surface-system-danger:  #A73D39;
+  --surface-system-warning: #D9621A;
+  --surface-system-caution: #C49030;
+  --surface-system-success: #4A8428;
+  --surface-system-info:    #3266AD;
+
+
+  /* --------------------------------------------------------------------------
+     CONTENT — BASE
+     -------------------------------------------------------------------------- */
+
+  --content-base:    #141413;
+  --content-1:       #413D37;
+  --content-2:       #6E6960;
+  --content-inverse: #FFFFFF;
+  --content-brand:   #C96442;
+  --content-link:    #3266AD;
+
+
+  /* --------------------------------------------------------------------------
+     CONTENT — COMPONENT STATES
+     -------------------------------------------------------------------------- */
+
+  --content-component-states-required:    #A73D39;
+  --content-component-states-danger:      #A73D39;
+  --content-component-states-warning:     #B34C10;
+  --content-component-states-caution:     #A07224;
+  --content-component-states-success:     #4A8428;
+  --content-component-states-info:        #4682D5;
+  --content-component-states-placeholder: #BEB9B0;
+  --content-component-states-disabled:    #BEB9B0;
+  --content-component-states-dark:        #141413;
+  --content-component-states-light:       #FFFFFF;
+
+
+  /* --------------------------------------------------------------------------
+     BORDER — NEUTRAL
+     -------------------------------------------------------------------------- */
+
+  --border-neutral-1: #FAF9F5;
+  --border-neutral-2: #EAE5DE;
+  --border-neutral-3: #6E6960;
+  --border-neutral-4: #504B44;
+  --border-neutral-5: #262624;
+
+
+  /* --------------------------------------------------------------------------
+     BORDER — BRAND
+     -------------------------------------------------------------------------- */
+
+  --border-brand-primary: #C96442;
+
+
+  /* --------------------------------------------------------------------------
+     BORDER — COMPONENT STATES
+     -------------------------------------------------------------------------- */
+
+  --border-component-states-danger:   #A73D39;
+  --border-component-states-warning:  #B34C10;
+  --border-component-states-caution:  #A07224;
+  --border-component-states-success:  #4A8428;
+  --border-component-states-info:     #4682D5;
+  --border-component-states-disabled: #EAE5DE;
+  --border-component-states-focus:    #FAF9F5;
+
+
+  /* --------------------------------------------------------------------------
+     BORDER — COMPONENT DEFAULTS
+     -------------------------------------------------------------------------- */
+
+  --border-component-primary-default:  #C96442;
+  --border-component-neutral-default:  #928D84;
+  --border-component-tertiary-default: #BEB9B0;
+
+}
+
+
+/* ==========================================================================
+   SEMANTICS — DARK MODE
+   ========================================================================== */
+
+[data-theme="dark"] {
+
+  /* --------------------------------------------------------------------------
+     SURFACE — NEUTRAL
+     -------------------------------------------------------------------------- */
+
+  --surface-neutral-base:    #262624;
+  --surface-neutral-1:       #30302E;
+  --surface-neutral-2:       #413D37;
+  --surface-neutral-3:       #504B44;
+  --surface-neutral-inverse: #FAF9F5;
+
+
+  /* --------------------------------------------------------------------------
+     SURFACE — PRIMARY
+     -------------------------------------------------------------------------- */
+
+  --surface-primary-1: #1D0C07;
+  --surface-primary-2: #2A1109;
+  --surface-primary-3: #F6DDD5;
+
+
+  /* --------------------------------------------------------------------------
+     SURFACE — COMPONENT: PRIMARY
+     -------------------------------------------------------------------------- */
+
+  --surface-primary-default:  #D97757;
+  --surface-primary-hover:    #C96442;
+  --surface-primary-pressed:  #A64626;
+  --surface-primary-focussed: #D97757;
+
+
+  /* --------------------------------------------------------------------------
+     SURFACE — COMPONENT: SECONDARY (neutral filled)
+     -------------------------------------------------------------------------- */
+
+  --surface-secondary-default:  #FAF9F5;
+  --surface-secondary-hover:    #F5F4ED;
+  --surface-secondary-pressed:  #F5F4ED;
+  --surface-secondary-focussed: #FAF9F5;
+
+
+  /* --------------------------------------------------------------------------
+     SURFACE — COMPONENT: GHOST
+     -------------------------------------------------------------------------- */
+
+  --surface-ghost-default:  #262624;
+  --surface-ghost-hover:    #141413;
+  --surface-ghost-pressed:  #141413;
+  --surface-ghost-focussed: #262624;
+
+
+  /* --------------------------------------------------------------------------
+     SURFACE — STATES
+     -------------------------------------------------------------------------- */
+
+  --surface-states-danger:     #370D0D;
+  --surface-states-warning:    #2A1002;
+  --surface-states-caution:    #261D08;
+  --surface-states-success:    #0D2208;
+  --surface-states-info:       #0C1E36;
+  --surface-states-tint-1:     rgb(255 255 255 / 50%);
+  --surface-states-tint-2:     rgb(255 255 255 / 30%);
+  --surface-states-disabled-1: #413D37;
+  --surface-states-disabled-2: #504B44;
+  --surface-states-skeleton-1: #30302E;
+  --surface-states-skeleton-2: #413D37;
+
+
+  /* --------------------------------------------------------------------------
+     SURFACE — SYSTEM
+     -------------------------------------------------------------------------- */
+
+  --surface-system-danger:  #E27878;
+  --surface-system-warning: #FFA85C;
+  --surface-system-caution: #E8D4A8;
+  --surface-system-success: #8DC261;
+  --surface-system-info:    #79AAE4;
+
+
+  /* --------------------------------------------------------------------------
+     CONTENT — BASE
+     -------------------------------------------------------------------------- */
+
+  --content-base:    #FFFFFF;
+  --content-1:       #EAE5DE;
+  --content-2:       #BEB9B0;
+  --content-inverse: #141413;
+  --content-brand:   #D97757;
+  --content-link:    #3266AD;
+
+
+  /* --------------------------------------------------------------------------
+     CONTENT — COMPONENT STATES
+     -------------------------------------------------------------------------- */
+
+  --content-component-states-required:    #E27878;
+  --content-component-states-danger:      #E27878;
+  --content-component-states-warning:     #FFA85C;
+  --content-component-states-caution:     #E8D4A8;
+  --content-component-states-success:     #8DC261;
+  --content-component-states-info:        #79AAE4;
+  --content-component-states-placeholder: #504B44;
+  --content-component-states-disabled:    #504B44;
+  --content-component-states-dark:        #141413;
+  --content-component-states-light:       #FFFFFF;
+
+
+  /* --------------------------------------------------------------------------
+     BORDER — NEUTRAL
+     -------------------------------------------------------------------------- */
+
+  --border-neutral-1: #262624;
+  --border-neutral-2: #413D37;
+  --border-neutral-3: #6E6960;
+  --border-neutral-4: #EAE5DE;
+  --border-neutral-5: #FAF9F5;
+
+
+  /* --------------------------------------------------------------------------
+     BORDER — BRAND
+     -------------------------------------------------------------------------- */
+
+  --border-brand-primary: #D97757;
+
+
+  /* --------------------------------------------------------------------------
+     BORDER — COMPONENT STATES
+     -------------------------------------------------------------------------- */
+
+  --border-component-states-danger:   #E27878;
+  --border-component-states-warning:  #FFA85C;
+  --border-component-states-caution:  #E8D4A8;
+  --border-component-states-success:  #8DC261;
+  --border-component-states-info:     #79AAE4;
+  --border-component-states-disabled: #413D37;
+  --border-component-states-focus:    #262624;
+
+
+  /* --------------------------------------------------------------------------
+     BORDER — COMPONENT DEFAULTS
+     -------------------------------------------------------------------------- */
+
+  --border-component-primary-default:  #D97757;
+  --border-component-neutral-default:  #BEB9B0;
+  --border-component-tertiary-default: #504B44;
+
+
+  /* --------------------------------------------------------------------------
+     NEUTRAL ALPHA — dark mode: light overlay
+     -------------------------------------------------------------------------- */
+
+  --color-neutral-500-50: rgb(255 255 255 / 50%);
+  --color-neutral-300-30: rgb(255 255 255 / 30%);
+
+}
+
+
+/* ==========================================================================
+   SYSTEM PREFERENCE — DARK MODE
+   Applies dark tokens to :root when the OS is in dark mode and no
+   [data-theme] attribute is present. The [data-theme="light"] and
+   [data-theme="dark"] attribute selectors (specificity 0,1,0) always
+   win over :root (specificity 0,0,1), so manual overrides still work.
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+
+    /* SURFACE — NEUTRAL */
+    --surface-neutral-base:    #262624;
+    --surface-neutral-1:       #30302E;
+    --surface-neutral-2:       #413D37;
+    --surface-neutral-3:       #504B44;
+    --surface-neutral-inverse: #FAF9F5;
+
+    /* SURFACE — PRIMARY */
+    --surface-primary-1: #1D0C07;
+    --surface-primary-2: #2A1109;
+    --surface-primary-3: #F6DDD5;
+
+    /* SURFACE — COMPONENT: PRIMARY */
+    --surface-primary-default:  #D97757;
+    --surface-primary-hover:    #C96442;
+    --surface-primary-pressed:  #A64626;
+    --surface-primary-focussed: #D97757;
+
+    /* SURFACE — COMPONENT: SECONDARY */
+    --surface-secondary-default:  #FAF9F5;
+    --surface-secondary-hover:    #F5F4ED;
+    --surface-secondary-pressed:  #F5F4ED;
+    --surface-secondary-focussed: #FAF9F5;
+
+    /* SURFACE — COMPONENT: GHOST */
+    --surface-ghost-default:  #262624;
+    --surface-ghost-hover:    #141413;
+    --surface-ghost-pressed:  #141413;
+    --surface-ghost-focussed: #262624;
+
+    /* SURFACE — STATES */
+    --surface-states-danger:     #370D0D;
+    --surface-states-warning:    #2A1002;
+    --surface-states-caution:    #261D08;
+    --surface-states-success:    #0D2208;
+    --surface-states-info:       #0C1E36;
+    --surface-states-tint-1:     rgb(255 255 255 / 50%);
+    --surface-states-tint-2:     rgb(255 255 255 / 30%);
+    --surface-states-disabled-1: #413D37;
+    --surface-states-disabled-2: #504B44;
+    --surface-states-skeleton-1: #30302E;
+    --surface-states-skeleton-2: #413D37;
+
+    /* SURFACE — SYSTEM */
+    --surface-system-danger:  #E27878;
+    --surface-system-warning: #FFA85C;
+    --surface-system-caution: #E8D4A8;
+    --surface-system-success: #8DC261;
+    --surface-system-info:    #79AAE4;
+
+    /* CONTENT — BASE */
+    --content-base:    #FFFFFF;
+    --content-1:       #EAE5DE;
+    --content-2:       #BEB9B0;
+    --content-inverse: #141413;
+    --content-brand:   #D97757;
+    --content-link:    #3266AD;
+
+    /* CONTENT — COMPONENT STATES */
+    --content-component-states-required:    #E27878;
+    --content-component-states-danger:      #E27878;
+    --content-component-states-warning:     #FFA85C;
+    --content-component-states-caution:     #E8D4A8;
+    --content-component-states-success:     #8DC261;
+    --content-component-states-info:        #79AAE4;
+    --content-component-states-placeholder: #504B44;
+    --content-component-states-disabled:    #504B44;
+    --content-component-states-dark:        #141413;
+    --content-component-states-light:       #FFFFFF;
+
+    /* BORDER — NEUTRAL */
+    --border-neutral-1: #262624;
+    --border-neutral-2: #413D37;
+    --border-neutral-3: #6E6960;
+    --border-neutral-4: #EAE5DE;
+    --border-neutral-5: #FAF9F5;
+
+    /* BORDER — BRAND */
+    --border-brand-primary: #D97757;
+
+    /* BORDER — COMPONENT STATES */
+    --border-component-states-danger:   #E27878;
+    --border-component-states-warning:  #FFA85C;
+    --border-component-states-caution:  #E8D4A8;
+    --border-component-states-success:  #8DC261;
+    --border-component-states-info:     #79AAE4;
+    --border-component-states-disabled: #413D37;
+    --border-component-states-focus:    #262624;
+
+    /* BORDER — COMPONENT DEFAULTS */
+    --border-component-primary-default:  #D97757;
+    --border-component-neutral-default:  #BEB9B0;
+    --border-component-tertiary-default: #504B44;
+
+    /* NEUTRAL ALPHA — light overlay */
+    --color-neutral-500-50: rgb(255 255 255 / 50%);
+    --color-neutral-300-30: rgb(255 255 255 / 30%);
+
+  }
+}
+
+/* Font overrides: replace proprietary Anthropic fonts with Google Fonts equivalents */
+:root {
+  --font-family-heading: "Newsreader", serif;
+  --font-family-body:    "DM Sans", sans-serif;
+  --font-family-mono:    "JetBrains Mono", monospace;
+}
