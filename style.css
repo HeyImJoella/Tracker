@@ -24,8 +24,8 @@
 
   /* Text */
   --text:         var(--content-base);           /* #141413 / near-white dark */
-  --text-muted:   var(--content-2);              /* #6E6960 */
-  --text-dim:     var(--content-2);
+  --text-muted:   var(--content-1);              /* #413D37 light / #C8C3BB dark */
+  --text-dim:     var(--content-2);              /* #6E6960 light / #8A857C dark */
 
   /* Semantic status */
   --green:        var(--surface-system-success); /* #4A8428 / #8DC261 dark */
@@ -509,9 +509,22 @@ input, button, select, textarea { font-family: inherit; }
   font-weight: 600;
 }
 
-.badge-upper-a { background: var(--accent-dim); color: var(--accent); }
-.badge-legs    { background: var(--green-dim);  color: var(--green);  }
-.badge-upper-b { background: var(--card-hover); color: var(--text-muted); }
+/* Light mode badge defaults */
+.badge-upper-a { background: rgba(232, 113, 74, 0.15); color: #C04E28; }
+.badge-legs    { background: rgba(52, 168, 83, 0.15);  color: #1E7A38; }
+.badge-upper-b { background: rgba(66, 133, 244, 0.15); color: #1A5CB5; }
+
+/* Dark mode badge overrides — manual toggle */
+[data-theme="dark"] .badge-upper-a { background: rgba(232, 113, 74, 0.18); color: #F09070; }
+[data-theme="dark"] .badge-legs    { background: rgba(52, 168, 83, 0.18);  color: #6EC97D; }
+[data-theme="dark"] .badge-upper-b { background: rgba(66, 133, 244, 0.18); color: #80AEFF; }
+
+/* Dark mode badge overrides — system preference */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .badge-upper-a { background: rgba(232, 113, 74, 0.18); color: #F09070; }
+  :root:not([data-theme="light"]) .badge-legs    { background: rgba(52, 168, 83, 0.18);  color: #6EC97D; }
+  :root:not([data-theme="light"]) .badge-upper-b { background: rgba(66, 133, 244, 0.18); color: #80AEFF; }
+}
 
 /* Weekly Activity */
 .week-grid {
@@ -840,7 +853,7 @@ table.exercise-table {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  color: var(--text-dim);
+  color: var(--text-muted);
 }
 
 .chart-empty p { font-size: 13px; }
@@ -1130,7 +1143,7 @@ table.exercise-table {
 .empty-state {
   text-align: center;
   padding: 48px 20px;
-  color: var(--text-dim);
+  color: var(--text-muted);
   font-size: 13px;
 }
 
@@ -1241,18 +1254,18 @@ table.exercise-table {
    DARK MODE — token overrides
 ============================================== */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     /* Depth hierarchy: bg (darkest) → sidebar → card (lightest) */
-    --bg:         #141413;   /* deep near-black canvas */
-    --sidebar:    #191917;   /* slightly elevated nav layer */
-    --card:       #1e1e1c;   /* dark floating card surface */
-    --card-hover: #272725;   /* card hover state */
+    --bg:         #131211;   /* near-black canvas */
+    --sidebar:    #1A1917;   /* slightly elevated nav layer */
+    --card:       #1E1D1B;   /* dark floating card surface */
+    --card-hover: #252321;   /* card hover state */
 
     /* Subtle alpha borders */
     --border:       rgba(255, 255, 255, 0.07);
     --border-hover: rgba(255, 255, 255, 0.15);
 
-    --shadow: 0 4px 24px rgba(0, 0, 0, 0.55);
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.65);
   }
 }
 

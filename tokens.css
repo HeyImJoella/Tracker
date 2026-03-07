@@ -32,8 +32,8 @@
   --color-brand-950: #1D0C07;
 
   /* Alpha */
-  --color-brand-500-50: rgb(201 100 66 / 50%);
-  --color-brand-300-30: rgb(227 154 130 / 30%);
+  --color-brand-500-50: rgb(232 113 74 / 50%);
+  --color-brand-300-30: rgb(232 113 74 / 30%);
 
 
   /* --------------------------------------------------------------------------
@@ -325,30 +325,30 @@
      SURFACE — NEUTRAL
      -------------------------------------------------------------------------- */
 
-  --surface-neutral-base:    #FAF9F5;
-  --surface-neutral-1:       #F5F4ED;
-  --surface-neutral-2:       #EAE5DE;
-  --surface-neutral-3:       #BEB9B0;
-  --surface-neutral-inverse: #262624;
+  --surface-neutral-base:    #FFFFFF;
+  --surface-neutral-1:       #F7F6F3;
+  --surface-neutral-2:       #ECEAE5;
+  --surface-neutral-3:       #C8C3BB;
+  --surface-neutral-inverse: #1A1917;
 
 
   /* --------------------------------------------------------------------------
      SURFACE — PRIMARY
      -------------------------------------------------------------------------- */
 
-  --surface-primary-1: #FDF7F5;
-  --surface-primary-2: #FAEEEA;
-  --surface-primary-3: #532313;
+  --surface-primary-1: #FFF4EF;
+  --surface-primary-2: #FFE5D8;
+  --surface-primary-3: #4A2010;
 
 
   /* --------------------------------------------------------------------------
      SURFACE — COMPONENT: PRIMARY
      -------------------------------------------------------------------------- */
 
-  --surface-primary-default:  #C96442;
-  --surface-primary-hover:    #A64626;
-  --surface-primary-pressed:  #7D341C;
-  --surface-primary-focussed: #C96442;
+  --surface-primary-default:  #E8714A;
+  --surface-primary-hover:    #CC5835;
+  --surface-primary-pressed:  #A8421F;
+  --surface-primary-focussed: #E8714A;
 
 
   /* --------------------------------------------------------------------------
@@ -407,7 +407,7 @@
   --content-1:       #413D37;
   --content-2:       #6E6960;
   --content-inverse: #FFFFFF;
-  --content-brand:   #C96442;
+  --content-brand:   #E8714A;
   --content-link:    #3266AD;
 
 
@@ -442,7 +442,7 @@
      BORDER — BRAND
      -------------------------------------------------------------------------- */
 
-  --border-brand-primary: #C96442;
+  --border-brand-primary: #E8714A;
 
 
   /* --------------------------------------------------------------------------
@@ -454,17 +454,17 @@
   --border-component-states-caution:  #A07224;
   --border-component-states-success:  #4A8428;
   --border-component-states-info:     #4682D5;
-  --border-component-states-disabled: #EAE5DE;
-  --border-component-states-focus:    #FAF9F5;
+  --border-component-states-disabled: #ECEAE5;
+  --border-component-states-focus:    #FFFFFF;
 
 
   /* --------------------------------------------------------------------------
      BORDER — COMPONENT DEFAULTS
      -------------------------------------------------------------------------- */
 
-  --border-component-primary-default:  #C96442;
+  --border-component-primary-default:  #E8714A;
   --border-component-neutral-default:  #928D84;
-  --border-component-tertiary-default: #BEB9B0;
+  --border-component-tertiary-default: #C8C3BB;
 
 }
 
@@ -479,19 +479,19 @@
      SURFACE — NEUTRAL
      -------------------------------------------------------------------------- */
 
-  --surface-neutral-base:    #262624;
-  --surface-neutral-1:       #30302E;
-  --surface-neutral-2:       #413D37;
-  --surface-neutral-3:       #504B44;
-  --surface-neutral-inverse: #FAF9F5;
+  --surface-neutral-base:    #131211;
+  --surface-neutral-1:       #1A1917;
+  --surface-neutral-2:       #252321;
+  --surface-neutral-3:       #302E2B;
+  --surface-neutral-inverse: #F5F4ED;
 
 
   /* --------------------------------------------------------------------------
      SURFACE — PRIMARY
      -------------------------------------------------------------------------- */
 
-  --surface-primary-1: #1D0C07;
-  --surface-primary-2: #2A1109;
+  --surface-primary-1: #1E0D07;
+  --surface-primary-2: #2E150A;
   --surface-primary-3: #F6DDD5;
 
 
@@ -499,10 +499,10 @@
      SURFACE — COMPONENT: PRIMARY
      -------------------------------------------------------------------------- */
 
-  --surface-primary-default:  #D97757;
-  --surface-primary-hover:    #C96442;
-  --surface-primary-pressed:  #A64626;
-  --surface-primary-focussed: #D97757;
+  --surface-primary-default:  #E8714A;
+  --surface-primary-hover:    #CC5835;
+  --surface-primary-pressed:  #A8421F;
+  --surface-primary-focussed: #E8714A;
 
 
   /* --------------------------------------------------------------------------
@@ -557,12 +557,12 @@
      CONTENT — BASE
      -------------------------------------------------------------------------- */
 
-  --content-base:    #FFFFFF;
-  --content-1:       #EAE5DE;
-  --content-2:       #BEB9B0;
-  --content-inverse: #141413;
-  --content-brand:   #D97757;
-  --content-link:    #3266AD;
+  --content-base:    #F0EEE9;
+  --content-1:       #C8C3BB;
+  --content-2:       #8A857C;
+  --content-inverse: #131211;
+  --content-brand:   #E8714A;
+  --content-link:    #79AAE4;
 
 
   /* --------------------------------------------------------------------------
@@ -575,28 +575,28 @@
   --content-component-states-caution:     #E8D4A8;
   --content-component-states-success:     #8DC261;
   --content-component-states-info:        #79AAE4;
-  --content-component-states-placeholder: #504B44;
-  --content-component-states-disabled:    #504B44;
-  --content-component-states-dark:        #141413;
-  --content-component-states-light:       #FFFFFF;
+  --content-component-states-placeholder: #4A4643;
+  --content-component-states-disabled:    #4A4643;
+  --content-component-states-dark:        #131211;
+  --content-component-states-light:       #F0EEE9;
 
 
   /* --------------------------------------------------------------------------
      BORDER — NEUTRAL
      -------------------------------------------------------------------------- */
 
-  --border-neutral-1: #262624;
-  --border-neutral-2: #413D37;
-  --border-neutral-3: #6E6960;
-  --border-neutral-4: #EAE5DE;
-  --border-neutral-5: #FAF9F5;
+  --border-neutral-1: #131211;
+  --border-neutral-2: #252321;
+  --border-neutral-3: #4A4643;
+  --border-neutral-4: #C8C3BB;
+  --border-neutral-5: #F0EEE9;
 
 
   /* --------------------------------------------------------------------------
      BORDER — BRAND
      -------------------------------------------------------------------------- */
 
-  --border-brand-primary: #D97757;
+  --border-brand-primary: #E8714A;
 
 
   /* --------------------------------------------------------------------------
@@ -608,17 +608,17 @@
   --border-component-states-caution:  #E8D4A8;
   --border-component-states-success:  #8DC261;
   --border-component-states-info:     #79AAE4;
-  --border-component-states-disabled: #413D37;
-  --border-component-states-focus:    #262624;
+  --border-component-states-disabled: #252321;
+  --border-component-states-focus:    #131211;
 
 
   /* --------------------------------------------------------------------------
      BORDER — COMPONENT DEFAULTS
      -------------------------------------------------------------------------- */
 
-  --border-component-primary-default:  #D97757;
-  --border-component-neutral-default:  #BEB9B0;
-  --border-component-tertiary-default: #504B44;
+  --border-component-primary-default:  #E8714A;
+  --border-component-neutral-default:  #8A857C;
+  --border-component-tertiary-default: #4A4643;
 
 
   /* --------------------------------------------------------------------------
@@ -640,50 +640,50 @@
    ========================================================================== */
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
 
     /* SURFACE — NEUTRAL */
-    --surface-neutral-base:    #262624;
-    --surface-neutral-1:       #30302E;
-    --surface-neutral-2:       #413D37;
-    --surface-neutral-3:       #504B44;
-    --surface-neutral-inverse: #FAF9F5;
+    --surface-neutral-base:    #131211;
+    --surface-neutral-1:       #1A1917;
+    --surface-neutral-2:       #252321;
+    --surface-neutral-3:       #302E2B;
+    --surface-neutral-inverse: #F5F4ED;
 
     /* SURFACE — PRIMARY */
-    --surface-primary-1: #1D0C07;
-    --surface-primary-2: #2A1109;
+    --surface-primary-1: #1E0D07;
+    --surface-primary-2: #2E150A;
     --surface-primary-3: #F6DDD5;
 
     /* SURFACE — COMPONENT: PRIMARY */
-    --surface-primary-default:  #D97757;
-    --surface-primary-hover:    #C96442;
-    --surface-primary-pressed:  #A64626;
-    --surface-primary-focussed: #D97757;
+    --surface-primary-default:  #E8714A;
+    --surface-primary-hover:    #CC5835;
+    --surface-primary-pressed:  #A8421F;
+    --surface-primary-focussed: #E8714A;
 
     /* SURFACE — COMPONENT: SECONDARY */
-    --surface-secondary-default:  #FAF9F5;
-    --surface-secondary-hover:    #F5F4ED;
-    --surface-secondary-pressed:  #F5F4ED;
-    --surface-secondary-focussed: #FAF9F5;
+    --surface-secondary-default:  #F5F4ED;
+    --surface-secondary-hover:    #ECEAE5;
+    --surface-secondary-pressed:  #ECEAE5;
+    --surface-secondary-focussed: #F5F4ED;
 
     /* SURFACE — COMPONENT: GHOST */
-    --surface-ghost-default:  #262624;
-    --surface-ghost-hover:    #141413;
-    --surface-ghost-pressed:  #141413;
-    --surface-ghost-focussed: #262624;
+    --surface-ghost-default:  #131211;
+    --surface-ghost-hover:    #0A0A09;
+    --surface-ghost-pressed:  #0A0A09;
+    --surface-ghost-focussed: #131211;
 
     /* SURFACE — STATES */
-    --surface-states-danger:     #370D0D;
-    --surface-states-warning:    #2A1002;
-    --surface-states-caution:    #261D08;
-    --surface-states-success:    #0D2208;
-    --surface-states-info:       #0C1E36;
+    --surface-states-danger:     #2A0808;
+    --surface-states-warning:    #1E0D07;
+    --surface-states-caution:    #1C1508;
+    --surface-states-success:    #0A1A06;
+    --surface-states-info:       #08162A;
     --surface-states-tint-1:     rgb(255 255 255 / 50%);
     --surface-states-tint-2:     rgb(255 255 255 / 30%);
-    --surface-states-disabled-1: #413D37;
-    --surface-states-disabled-2: #504B44;
-    --surface-states-skeleton-1: #30302E;
-    --surface-states-skeleton-2: #413D37;
+    --surface-states-disabled-1: #252321;
+    --surface-states-disabled-2: #302E2B;
+    --surface-states-skeleton-1: #1A1917;
+    --surface-states-skeleton-2: #252321;
 
     /* SURFACE — SYSTEM */
     --surface-system-danger:  #E27878;
@@ -693,12 +693,12 @@
     --surface-system-info:    #79AAE4;
 
     /* CONTENT — BASE */
-    --content-base:    #FFFFFF;
-    --content-1:       #EAE5DE;
-    --content-2:       #BEB9B0;
-    --content-inverse: #141413;
-    --content-brand:   #D97757;
-    --content-link:    #3266AD;
+    --content-base:    #F0EEE9;
+    --content-1:       #C8C3BB;
+    --content-2:       #8A857C;
+    --content-inverse: #131211;
+    --content-brand:   #E8714A;
+    --content-link:    #79AAE4;
 
     /* CONTENT — COMPONENT STATES */
     --content-component-states-required:    #E27878;
@@ -707,20 +707,20 @@
     --content-component-states-caution:     #E8D4A8;
     --content-component-states-success:     #8DC261;
     --content-component-states-info:        #79AAE4;
-    --content-component-states-placeholder: #504B44;
-    --content-component-states-disabled:    #504B44;
-    --content-component-states-dark:        #141413;
-    --content-component-states-light:       #FFFFFF;
+    --content-component-states-placeholder: #4A4643;
+    --content-component-states-disabled:    #4A4643;
+    --content-component-states-dark:        #131211;
+    --content-component-states-light:       #F0EEE9;
 
     /* BORDER — NEUTRAL */
-    --border-neutral-1: #262624;
-    --border-neutral-2: #413D37;
-    --border-neutral-3: #6E6960;
-    --border-neutral-4: #EAE5DE;
-    --border-neutral-5: #FAF9F5;
+    --border-neutral-1: #131211;
+    --border-neutral-2: #252321;
+    --border-neutral-3: #4A4643;
+    --border-neutral-4: #C8C3BB;
+    --border-neutral-5: #F0EEE9;
 
     /* BORDER — BRAND */
-    --border-brand-primary: #D97757;
+    --border-brand-primary: #E8714A;
 
     /* BORDER — COMPONENT STATES */
     --border-component-states-danger:   #E27878;
@@ -728,13 +728,13 @@
     --border-component-states-caution:  #E8D4A8;
     --border-component-states-success:  #8DC261;
     --border-component-states-info:     #79AAE4;
-    --border-component-states-disabled: #413D37;
-    --border-component-states-focus:    #262624;
+    --border-component-states-disabled: #252321;
+    --border-component-states-focus:    #131211;
 
     /* BORDER — COMPONENT DEFAULTS */
-    --border-component-primary-default:  #D97757;
-    --border-component-neutral-default:  #BEB9B0;
-    --border-component-tertiary-default: #504B44;
+    --border-component-primary-default:  #E8714A;
+    --border-component-neutral-default:  #8A857C;
+    --border-component-tertiary-default: #4A4643;
 
     /* NEUTRAL ALPHA — light overlay */
     --color-neutral-500-50: rgb(255 255 255 / 50%);

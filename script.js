@@ -7,74 +7,61 @@
 // DATA: Workout definitions
 // ==============================================
 const WORKOUTS = {
-  upperA: {
-    name: 'Upper A',
+  push: {
+    name: 'Push',
     exercises: [
-      { name: 'Bench Press',         key: 'upperA-bench',    reps: '2x8',  kg: 14,   type: 'Compound',  target: 'Chest'    },
-      { name: 'Pull-Ups',            key: 'upperA-pull',     reps: '2x8',  kg: null,  type: 'Compound',  target: 'Lats'     },
-      { name: 'Dumbbell Row',         key: 'upperA-row',      reps: '3x10', kg: 14,   type: 'Compound',  target: 'Lats'     },
-      { name: 'Dumbbell Pullover',   key: 'upperA-pullover', reps: '2x10', kg: 12,   type: 'Isolation', target: 'Lats',   optional: true },
-      { name: 'Incline Fly',         key: 'upperA-fly',      reps: '2x10', kg: 10,   type: 'Isolation', target: 'Chest'    },
-      { name: 'Lateral Raises',      key: 'upperA-lateral',  reps: '2x10', kg: 6,    type: 'Isolation', target: 'Shoulder' },
-      { name: 'Overhead Extension',  key: 'upperA-triceps',  reps: '2x10', kg: 8,    type: 'Isolation', target: 'Tricep'   },
-      { name: 'Incline Bicep Curl',  key: 'upperA-biceps',   reps: '2x10', kg: 10,   type: 'Isolation', target: 'Bicep'    },
+      { name: 'Incline Bench Press', key: 'push-incline',  reps: '3x10', kg: 12,  type: 'Compound',  target: 'Chest'    },
+      { name: 'Shoulder Press',      key: 'push-press',    reps: '3x10', kg: 8,   type: 'Compound',  target: 'Shoulder' },
+      { name: 'Incline Fly',         key: 'push-fly',      reps: '3x10', kg: 10,  type: 'Isolation', target: 'Chest'    },
+      { name: 'Lateral Raises',      key: 'push-lateral',  reps: '3x10', kg: 6,   type: 'Isolation', target: 'Shoulder' },
+      { name: 'Skull Crusher',       key: 'push-skull',    reps: '3x10', kg: 8,   type: 'Isolation', target: 'Tricep'   },
+    ]
+  },
+  pull: {
+    name: 'Pull',
+    exercises: [
+      { name: 'Pull-Up / Pullover',  key: 'pull-pullup',   reps: '3x10', kg: null, type: 'Compound',  target: 'Lats'     },
+      { name: 'Dumbbell Row',        key: 'pull-row',      reps: '3x10', kg: 14,  type: 'Compound',  target: 'Lats'     },
+      { name: 'Rear Delt Fly',       key: 'pull-rear',     reps: '3x10', kg: 6,   type: 'Isolation', target: 'Shoulder' },
+      { name: 'Bicep Curl',          key: 'pull-bicep',    reps: '3x10', kg: 8,   type: 'Isolation', target: 'Bicep'    },
+      { name: 'Hammer Curl',         key: 'pull-hammer',   reps: '3x10', kg: 8,   type: 'Isolation', target: 'Bicep'    },
     ]
   },
   legs: {
     name: 'Legs',
     exercises: [
-      { name: 'Goblet Squat',           key: 'legs-goblet',   reps: '2x10', kg: 20,  type: 'Compound',  target: 'Quads'     },
-      { name: 'Romanian Deadlift',      key: 'legs-rdl',      reps: '2x10', kg: 20,  type: 'Compound',  target: 'Hamstrings'},
-      { name: 'Bulgarian Split Squat',  key: 'legs-bulgarian',reps: '2x10', kg: 14,  type: 'Isolation', target: 'Quads'     },
-      { name: 'Hamstring Curl',         key: 'legs-curl',     reps: '2x10', kg: 10,  type: 'Isolation', target: 'Hamstrings'},
-      { name: 'Calf Raises',            key: 'legs-calf',     reps: '2x10', kg: 16,  type: 'Isolation', target: 'Calves'    },
-      { name: 'Decline Sit-Up',         key: 'legs-abs',      reps: '2x20', kg: 8,   type: 'Isolation', target: 'Abs'       },
+      { name: 'Goblet Squat',          key: 'legs-goblet',   reps: '3x10', kg: 20,  type: 'Compound',  target: 'Quads'     },
+      { name: 'Bulgarian Split Squat', key: 'legs-bulgarian',reps: '3x10', kg: 14,  type: 'Isolation', target: 'Quads'     },
+      { name: 'Romanian Deadlift',     key: 'legs-rdl',      reps: '3x10', kg: 20,  type: 'Compound',  target: 'Hamstrings'},
+      { name: 'Hamstring Curl',        key: 'legs-curl',     reps: '3x10', kg: 10,  type: 'Isolation', target: 'Hamstrings'},
+      { name: 'Calf Raises',           key: 'legs-calf',     reps: '3x10', kg: 16,  type: 'Isolation', target: 'Calves'    },
     ]
   },
-  upperB: {
-    name: 'Upper B',
-    exercises: [
-      { name: 'Incline Bench Press',  key: 'upperB-incline',  reps: '3x8',  kg: 14,  type: 'Compound',  target: 'Chest'    },
-      { name: 'Chin-Ups',            key: 'upperB-chin',     reps: '3x8',  kg: null, type: 'Compound',  target: 'Lats'     },
-      { name: 'Close Grip Press',    key: 'upperB-close',    reps: '3x10', kg: 12,  type: 'Compound',  target: 'Tricep'   },
-      { name: 'Dumbbell Row',         key: 'upperB-row',      reps: '3x10', kg: 16,  type: 'Compound',  target: 'Lats'     },
-      { name: 'Rear Delt Fly',       key: 'upperB-rear',     reps: '2x10', kg: 8,   type: 'Isolation', target: 'Shoulder' },
-      { name: 'Skull Crusher',       key: 'upperB-triceps',  reps: '2x10', kg: 8,   type: 'Isolation', target: 'Tricep'   },
-      { name: 'Incline Hammer Curl', key: 'upperB-biceps',   reps: '2x10', kg: 8,   type: 'Isolation', target: 'Bicep'    },
-    ]
-  },
-  classic: {
-    name: 'Classic',
-    exercises: [
-      { name: 'Bench Press',             key: 'classic-bench',    reps: '3x20', kg: 8,  type: 'Compound',  target: 'Chest'     },
-      { name: 'Bicep Curl',              key: 'classic-bicep',    reps: '3x12', kg: 6,  type: 'Isolation', target: 'Biceps'    },
-      { name: 'Dumbbell Shoulder Press', key: 'classic-shoulder', reps: '3x10', kg: 4,  type: 'Compound',  target: 'Shoulders' },
-      { name: 'Skull Crusher',           key: 'classic-skull',    reps: '3x10', kg: 4,  type: 'Isolation', target: 'Triceps'   },
-      { name: 'Dumbbell Row',            key: 'classic-row',      reps: '3x10', kg: 4,  type: 'Compound',  target: 'Back'      },
-    ]
-  }
 };
 
 const EXERCISE_LINKS = {
-  'Bench Press':          'https://strengthlevel.com/strength-standards/dumbbell-bench-press/kg',
-  'Pull-Ups':             'https://strengthlevel.com/strength-standards/pull-ups/kg',
-  'Dumbbell Row':         'https://strengthlevel.com/strength-standards/dumbbell-row/kg',
-  'Dumbbell Pullover':    'https://strengthlevel.com/strength-standards/dumbbell-pullover/kg',
+  'Incline Bench Press':  'https://strengthlevel.com/strength-standards/incline-dumbbell-press/kg',
+  'Shoulder Press':       'https://strengthlevel.com/strength-standards/dumbbell-shoulder-press/kg',
   'Incline Fly':          'https://strengthlevel.com/strength-standards/incline-dumbbell-fly/kg',
   'Lateral Raises':       'https://strengthlevel.com/strength-standards/lateral-raise/kg',
-  'Overhead Extension':   'https://strengthlevel.com/strength-standards/dumbbell-tricep-extension/kg',
-  'Incline Bicep Curl':   'https://strengthlevel.com/strength-standards/incline-dumbbell-curl/kg',
+  'Skull Crusher':        'https://strengthlevel.com/strength-standards/lying-dumbbell-tricep-extension/kg',
+  'Pull-Up / Pullover':   'https://strengthlevel.com/strength-standards/pull-ups/kg',
+  'Dumbbell Row':         'https://strengthlevel.com/strength-standards/dumbbell-row/kg',
+  'Rear Delt Fly':        'https://strengthlevel.com/strength-standards/rear-delt-fly/kg',
+  'Bicep Curl':           'https://strengthlevel.com/strength-standards/dumbbell-bicep-curl/kg',
+  'Hammer Curl':          'https://strengthlevel.com/strength-standards/hammer-curl/kg',
   'Goblet Squat':         'https://strengthlevel.com/strength-standards/goblet-squat/kg',
-  'Romanian Deadlift':    'https://strengthlevel.com/strength-standards/dumbbell-romanian-deadlift/kg',
   'Bulgarian Split Squat':'https://strengthlevel.com/strength-standards/dumbbell-bulgarian-split-squat/kg',
+  'Romanian Deadlift':    'https://strengthlevel.com/strength-standards/dumbbell-romanian-deadlift/kg',
   'Hamstring Curl':       'https://strengthlevel.com/strength-standards/hamstring-curl/kg',
   'Calf Raises':          'https://strengthlevel.com/strength-standards/dumbbell-calf-raise/kg',
-  'Decline Sit-Up':       'https://strengthlevel.com/strength-standards/decline-sit-up/kg',
-  'Incline Bench Press':  'https://strengthlevel.com/strength-standards/incline-dumbbell-press/kg',
+  // kept for custom workouts / history
+  'Bench Press':          'https://strengthlevel.com/strength-standards/dumbbell-bench-press/kg',
+  'Pull-Ups':             'https://strengthlevel.com/strength-standards/pull-ups/kg',
+  'Dumbbell Pullover':    'https://strengthlevel.com/strength-standards/dumbbell-pullover/kg',
+  'Overhead Extension':   'https://strengthlevel.com/strength-standards/dumbbell-tricep-extension/kg',
+  'Incline Bicep Curl':   'https://strengthlevel.com/strength-standards/incline-dumbbell-curl/kg',
   'Chin-Ups':             'https://strengthlevel.com/strength-standards/chin-ups/kg',
-  'Close Grip Press':     'https://strengthlevel.com/strength-standards/close-grip-dumbbell-bench-press/kg',
-  'Rear Delt Fly':        'https://strengthlevel.com/strength-standards/rear-delt-fly/kg',
-  'Skull Crusher':        'https://strengthlevel.com/strength-standards/lying-dumbbell-tricep-extension/kg',
   'Incline Hammer Curl':  'https://strengthlevel.com/strength-standards/hammer-curl/kg',
 };
 
@@ -153,7 +140,7 @@ const BADGE_COLORS = [
 // ==============================================
 // STATE
 // ==============================================
-let currentWorkout = 'upperA';
+let currentWorkout = 'push';
 let showOnlyPR = false;
 let logToDelete = null;
 
@@ -229,7 +216,7 @@ function switchWorkout(id, btn) {
     if (id === '__new__') {
       saveBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg> Create Workout`;
     } else {
-      saveBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Save Session`;
+      saveBtn.innerHTML = `Save Session`;
     }
   }
 }
@@ -1476,10 +1463,9 @@ function renderWorkoutTabs() {
   if (!row) return;
   const customs = getCustomWorkouts();
   const stdTabs = [
-    { id: 'classic',  label: 'Classic' },
-    { id: 'upperA',   label: 'Upper A' },
-    { id: 'legs',     label: 'Legs'    },
-    { id: 'upperB',   label: 'Upper B' },
+    { id: 'push',  label: 'Push' },
+    { id: 'pull',  label: 'Pull' },
+    { id: 'legs',  label: 'Legs' },
   ];
   row.innerHTML = [
     ...stdTabs.map(t =>
@@ -1923,9 +1909,9 @@ function saveNewWorkout() {
 // ==============================================
 function getSessionBadge(session) {
   const STD = {
-    upperA: { cls: 'badge-upper-a', style: '', label: 'Upper A' },
-    legs:   { cls: 'badge-legs',    style: '', label: 'Legs'    },
-    upperB: { cls: 'badge-upper-b', style: '', label: 'Upper B' },
+    push: { cls: 'badge-upper-a', style: '', label: 'Push' },
+    pull: { cls: 'badge-upper-b', style: '', label: 'Pull' },
+    legs: { cls: 'badge-legs',    style: '', label: 'Legs' },
   };
   if (STD[session.workoutId]) return STD[session.workoutId];
 
