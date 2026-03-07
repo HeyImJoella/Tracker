@@ -834,15 +834,50 @@ function togglePR() {
   const btn = document.getElementById('pr-button');
   if (btn) {
     btn.classList.toggle('active', showOnlyPR);
-    btn.innerHTML = showOnlyPR ? '✕ Records off' : '🏆 Records';
+    btn.innerHTML = showOnlyPR ? '✕ Records off' : 'Records';
   }
   renderHistory();
+}
+
+function renderProgStatPills() {
+  const el = document.getElementById('prog-stat-pills');
+  if (!el) return;
+  const history = getHistory();
+  const now = new Date();
+  const totalSessions = history.length;
+  const totalPRs = countTotalPRs(history);
+  const thisMonth = history.filter(s => {
+    const d = new Date(s.timestamp);
+    return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+  }).length;
+  const streak = calcStreak(history);
+
+  const pill = (icon, iconBg, label, value) => `
+    <div class="prog-pill">
+      <div class="prog-pill-icon" style="background:${iconBg}">${icon}</div>
+      <div>
+        <div class="prog-pill-label">${label}</div>
+        <div class="prog-pill-value">${value}</div>
+      </div>
+    </div>`;
+
+  el.innerHTML = [
+    pill(`<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+      'rgba(232,113,74,0.15)', 'Total Sessions', totalSessions),
+    pill(`<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 5 5.6.8-4 4 .9 5.5L12 15l-4.9 2.3.9-5.5-4-4 5.6-.8L12 2z" fill="currentColor"/></svg>`,
+      'rgba(245,158,11,0.15)', 'Personal Records', totalPRs),
+    pill(`<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+      'rgba(66,133,244,0.15)', 'This Month', thisMonth),
+    pill(`<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M13 2L4.5 13h6.5l-1 9 9.5-11.5H13V2z" fill="currentColor"/></svg>`,
+      'rgba(239,68,68,0.15)', 'Week Streak', streak + (streak === 1 ? ' wk' : ' wks')),
+  ].join('');
 }
 
 function renderHistory() {
   const container = document.getElementById('history-content');
   if (!container) return;
 
+  renderProgStatPills();
   const history = getHistory();
   populateHistoryExerciseDropdown(history);
 
@@ -864,6 +899,50 @@ function renderHistory() {
 
   filtered.sort((a, b) => b.timestamp - a.timestamp);
 
+  // ── Option B: compact table when a specific exercise is filtered ──
+  if (exFilter !== 'all') {
+    const rows = [];
+    filtered.forEach(session => {
+      const match = session.exercises.find(ex => ex.exercise === exFilter);
+      if (!match) return;
+      if (showOnlyPR && !isPersonalRecord(match.exercise, match.weight, history, session.timestamp)) return;
+      const isPR = isPersonalRecord(match.exercise, match.weight, history, session.timestamp);
+      const d = new Date(session.timestamp);
+      const dateStr = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+      rows.push({ dateStr, reps: match.reps, weight: match.weight, isPR, timestamp: session.timestamp });
+    });
+
+    if (rows.length === 0) {
+      container.innerHTML = '<p class="empty-state">No sessions match the current filter.</p>';
+      return;
+    }
+
+    const tableRows = rows.map(r => `
+      <tr class="${r.isPR ? 'ex-table-pr' : ''}">
+        <td class="ex-table-date">${r.dateStr}</td>
+        <td class="ex-table-reps">${r.reps}</td>
+        <td class="ex-table-weight"><strong>${r.weight}</strong><span class="unit"> kg</span></td>
+        <td class="ex-table-badge">${r.isPR ? '<span class="pr-star">PR</span>' : ''}</td>
+      </tr>
+    `).join('');
+
+    container.innerHTML = `
+      <table class="ex-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Set × Rep</th>
+            <th>Weight</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>${tableRows}</tbody>
+      </table>
+    `;
+    return;
+  }
+  // ── end Option B ──
+
   const MONTH_NAMES = ['January','February','March','April','May','June',
                        'July','August','September','October','November','December'];
 
@@ -881,7 +960,6 @@ function renderHistory() {
     groupMap.get(key).sessions.push(session);
   });
 
-  let isFirstSession = true;
   let html = '';
 
   for (const [, group] of groupMap) {
@@ -926,9 +1004,7 @@ function renderHistory() {
         `;
       }).join('');
 
-      // Auto-open the very first (most recent) session
-      const openClass = isFirstSession ? ' open' : '';
-      isFirstSession = false;
+      const openClass = '';
 
       sessionHTMLs.push(`
         <div class="hist-entry${openClass}" onclick="toggleSession(this)">
@@ -979,9 +1055,10 @@ function populateHistoryExerciseDropdown(history) {
   if (!dropdown) return;
   if (!history) history = getHistory();
 
-  const exercises = [...new Set(history.flatMap(s => s.exercises.map(ex => ex.exercise)))].sort();
-  const current = dropdown.value;
+  // Only show exercises from the current workout definitions
+  const exercises = Object.values(WORKOUTS).flatMap(w => w.exercises.map(ex => ex.name)).sort();
 
+  const current = dropdown.value;
   dropdown.innerHTML = '<option value="all">All Exercises</option>';
   exercises.forEach(ex => {
     const opt = document.createElement('option');
@@ -1000,7 +1077,8 @@ function populateChartExerciseDropdown() {
   const dropdown = document.getElementById('chart-exercise');
   if (!dropdown) return;
 
-  const exercises = [...new Set(history.flatMap(s => s.exercises.map(ex => ex.exercise)))].sort();
+  // Only show exercises from the current workout definitions
+  const exercises = Object.values(WORKOUTS).flatMap(w => w.exercises.map(ex => ex.name)).sort();
   const current = dropdown.value;
 
   dropdown.innerHTML = '';
