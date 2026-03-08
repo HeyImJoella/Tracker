@@ -1125,8 +1125,8 @@ function renderChart(repopulate = true) {
   if (emptyEl) emptyEl.style.display = 'none';
 
   const W = chartWrap.offsetWidth || 600;
-  const H = 220;
-  const PAD = { top: 16, right: 20, bottom: 36, left: 46 };
+  const H = chartWrap.offsetHeight || 380;
+  const PAD = { top: 36, right: 20, bottom: 52, left: 46 };
   const iW = W - PAD.left - PAD.right;
   const iH = H - PAD.top - PAD.bottom;
 

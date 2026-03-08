@@ -959,11 +959,11 @@ table.exercise-table {
 /* ==============================================
    PROGRESSION CHART
 ============================================== */
-.chart-card { padding-bottom: 16px; }
+.chart-card { padding-bottom: 28px; }
 
 #chart-wrap {
   position: relative;
-  min-height: 220px;
+  min-height: 380px;
   width: 100%;
 }
 
