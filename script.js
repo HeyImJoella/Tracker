@@ -141,7 +141,7 @@ const BADGE_COLORS = [
 // STATE
 // ==============================================
 let currentWorkout = 'push';
-let showOnlyPR = false;
+
 let logToDelete = null;
 
 // Builder state
@@ -829,15 +829,6 @@ function calcStreak(history) {
 // ==============================================
 // HISTORY
 // ==============================================
-function togglePR() {
-  showOnlyPR = !showOnlyPR;
-  const btn = document.getElementById('pr-button');
-  if (btn) {
-    btn.classList.toggle('active', showOnlyPR);
-    btn.innerHTML = showOnlyPR ? '✕ Records off' : 'Records';
-  }
-  renderHistory();
-}
 
 function renderProgStatPills() {
   const el = document.getElementById('prog-stat-pills');
@@ -905,7 +896,6 @@ function renderHistory() {
     filtered.forEach(session => {
       const match = session.exercises.find(ex => ex.exercise === exFilter);
       if (!match) return;
-      if (showOnlyPR && !isPersonalRecord(match.exercise, match.weight, history, session.timestamp)) return;
       const isPR = isPersonalRecord(match.exercise, match.weight, history, session.timestamp);
       const d = new Date(session.timestamp);
       const dateStr = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
@@ -968,9 +958,7 @@ function renderHistory() {
 
     group.sessions.forEach(session => {
       const relevantExercises = session.exercises.filter(ex => {
-        const matchEx = exFilter === 'all' || ex.exercise === exFilter;
-        if (showOnlyPR) return matchEx && isPersonalRecord(ex.exercise, ex.weight, history, session.timestamp);
-        return matchEx;
+        return exFilter === 'all' || ex.exercise === exFilter;
       });
 
       if (relevantExercises.length === 0) return;
@@ -1137,8 +1125,8 @@ function renderChart(repopulate = true) {
   if (emptyEl) emptyEl.style.display = 'none';
 
   const W = chartWrap.offsetWidth || 600;
-  const H = 220;
-  const PAD = { top: 16, right: 20, bottom: 36, left: 46 };
+  const H = chartWrap.offsetHeight || 380;
+  const PAD = { top: 36, right: 20, bottom: 52, left: 46 };
   const iW = W - PAD.left - PAD.right;
   const iH = H - PAD.top - PAD.bottom;
 
@@ -1198,8 +1186,9 @@ function renderChart(repopulate = true) {
   }));
 
   svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
-  svgEl.setAttribute('width', W);
+  svgEl.setAttribute('width', '100%');
   svgEl.setAttribute('height', H);
+  svgEl.setAttribute('preserveAspectRatio', 'none');
 
   svgEl.innerHTML = `
     <defs>
@@ -1276,8 +1265,8 @@ function attachChartTooltips(svgEl) {
       const wrapRect = wrap.getBoundingClientRect();
       const cx = parseFloat(dot.getAttribute('cx'));
       const cy = parseFloat(dot.getAttribute('cy'));
-      const scaleX = rect.width / (parseFloat(svgEl.getAttribute('width')) || rect.width);
-      const scaleY = rect.height / (parseFloat(svgEl.getAttribute('height')) || rect.height);
+      const scaleX = rect.width / (svgEl.viewBox.baseVal.width || rect.width);
+      const scaleY = rect.height / (svgEl.viewBox.baseVal.height || rect.height);
 
       tooltip.style.left = (cx * scaleX + rect.left - wrapRect.left) + 'px';
       tooltip.style.top  = (cy * scaleY + rect.top  - wrapRect.top)  + 'px';
