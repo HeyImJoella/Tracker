@@ -60,6 +60,7 @@ body {
   line-height: 1.5;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden; /* prevent horizontal scroll at any breakpoint */
 }
 
 input, button, select, textarea { font-family: inherit; }
@@ -287,10 +288,12 @@ input, button, select, textarea { font-family: inherit; }
 
 .view {
   display: none;
-  padding: 32px 32px 80px;
+  /* Fluid padding: scales from 16px (mobile) to 32px (desktop) */
+  padding: clamp(16px, 4vw, 32px) clamp(16px, 4vw, 32px) 80px;
   flex-direction: column;
-  gap: 24px;
+  gap: clamp(16px, 2.5vw, 24px);
   flex: 1;
+  min-width: 0; /* prevent flex overflow on very narrow screens */
 }
 
 .view.active { display: flex; }
@@ -310,7 +313,8 @@ input, button, select, textarea { font-family: inherit; }
 
 .page-title {
   font-family: var(--font-family-heading);
-  font-size: 2.4rem;
+  /* clamp: 1.6rem on narrow mobile → 2.4rem on desktop */
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
   font-weight: 400;
   letter-spacing: -0.02em;
   line-height: 1.15;
@@ -597,6 +601,40 @@ input, button, select, textarea { font-family: inherit; }
 .workout-card {
   padding: 0;
   overflow: hidden;
+}
+
+/* Desktop: progression page fills full height and width */
+@media (min-width: 769px) {
+  #view-progression {
+    padding-bottom: 32px;
+    max-width: none;
+    width: 100%;
+  }
+  #view-progression.active {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  #view-progression .prog-layout {
+    flex: 1;
+    align-items: stretch;
+  }
+  #view-progression .prog-history-col {
+    overflow-y: auto;
+    max-height: calc(100vh - 120px);
+  }
+}
+
+/* Desktop: card fills remaining viewport height and full width */
+@media (min-width: 769px) {
+  #view-workouts {
+    padding-bottom: 32px;
+    max-width: none;
+    width: 100%;
+  }
+  #view-workouts #workout-content {
+    flex: 0 0 auto;
+  }
 }
 /* Allow suggestion dropdown to escape card clipping in builder/session add mode */
 .workout-card:has(.builder-wrap),
@@ -893,7 +931,7 @@ table.exercise-table {
   align-items: start;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1100px) {
   .prog-layout { grid-template-columns: 1fr; }
 }
 
@@ -925,7 +963,7 @@ table.exercise-table {
 
 #chart-wrap {
   position: relative;
-  min-height: 340px;
+  min-height: 220px;
   width: 100%;
 }
 
@@ -1175,23 +1213,23 @@ table.exercise-table {
 }
 
 .hist-reps {
-  color: var(--text-dim);
-  font-size: 12px;
+  color: var(--text-muted);
+  font-size: 13px;
   min-width: 36px;
   text-align: right;
 }
 
 .hist-weight {
-  font-weight: 700;
   font-size: 14px;
-  color: var(--text);
   min-width: 52px;
   text-align: right;
 }
 
+.hist-weight strong {
+  color: var(--content-1);
+}
+
 .hist-weight .unit {
-  font-size: 11px;
-  font-weight: 400;
   color: var(--text-muted);
   margin-left: 1px;
 }
@@ -1284,6 +1322,11 @@ table.exercise-table {
 
 .ex-table-weight strong {
   color: var(--content-1);
+}
+
+.ex-table-weight .unit {
+  color: var(--text-muted);
+  margin-left: 1px;
 }
 
 .ex-table-badge {
@@ -1383,15 +1426,29 @@ table.exercise-table {
 .modal-cancel:hover, .modal-confirm:hover { opacity: 0.85; }
 
 /* ==============================================
-   RESPONSIVE — Tablet
+   RESPONSIVE — Tablet (769–1024px)
+   Sidebar is visible (collapsed 54px).
+   Main content adapts to reduced width.
 ============================================== */
-@media (max-width: 1100px) {
+@media (max-width: 1024px) {
+  /* 4-col stat grid → 2-col */
   .stat-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  /* Dashboard side-by-side → single column */
   .dashboard-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Tablet-specific adjustments (no sidebar off-canvas in this range) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .view {
+    padding: 24px 28px 80px;
+    gap: 20px;
+  }
+  /* Stat card padding slightly reduced */
+  .stat-card { padding: 16px; }
 }
 
 /* ==============================================
@@ -1414,9 +1471,11 @@ table.exercise-table {
 }
 
 /* ==============================================
-   RESPONSIVE — Mobile
+   RESPONSIVE — Mobile + Large Mobile (≤768px)
+   Covers: phones (320–480px), large phones &
+   small tablets in portrait (481–768px)
 ============================================== */
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   /* Sidebar goes off-canvas (position: fixed removes it from flex flow) */
   .sidebar {
     position: fixed;
@@ -1497,6 +1556,12 @@ table.exercise-table {
 
   .hist-ex-row.is-pr {
     width: 100%;
+  }
+
+  /* Reset sticky chart — not useful when stacked in single column */
+  .prog-chart-col {
+    position: static;
+    top: auto;
   }
 }
 
@@ -2087,7 +2152,7 @@ table.exercise-table {
   align-items: center;
   gap: 9px;
   background: rgba(255, 255, 255, 0.02);
-  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--border-hover);
   border-radius: 8px;
   padding: 9px 14px;
   color: var(--text-muted);
@@ -2122,13 +2187,13 @@ table.exercise-table {
 }
 
 /* ==============================================
-   MOBILE LAYOUT
+   MOBILE LAYOUT (≤768px)
    Each exercise row = stacked card:
      [Exercise Name          ]
      [● ● ●  ·  Weight kg   ]
    Eliminates horizontal scroll entirely.
 ============================================== */
-@media (max-width: 700px) {
+@media (max-width: 768px) {
 
   /* ---- Timer bar ---- */
   .timer-bar-active {
@@ -2292,8 +2357,8 @@ table.exercise-table {
   .card-head { flex-direction: column; align-items: flex-start; }
   .card-head .filter-select { width: 100%; }
 
-  /* ---- View padding ---- */
-  .view { padding: 16px 14px 80px; gap: 16px; }
+  /* ---- View padding: handled by clamp() in base rule; only gap needs override ---- */
+  .view { gap: 16px; }
 
   /* ---- Page header ---- */
   .page-title { font-size: 1.8rem; }
@@ -2305,6 +2370,21 @@ table.exercise-table {
   /* ---- History entries ---- */
   .hist-head { flex-wrap: nowrap; }
   .hist-workout-name { font-size: 13px; }
+}
+
+/* ==============================================
+   RESPONSIVE — Large Desktop (≥1440px)
+   Prevent content stretching too wide on 4K
+   displays; increase breathing room.
+============================================== */
+@media (min-width: 1440px) {
+  .view {
+    padding: 40px 48px 80px;
+    max-width: 1600px; /* cap line length on ultra-wide screens */
+  }
+  .stat-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* ==============================================
@@ -2349,6 +2429,9 @@ table.exercise-table {
     border-color: rgba(0, 0, 0, 0.14);
     background:   rgba(0, 0, 0, 0.03);
   }
+
+  /* Add-exercise search row */
+  .add-ex-search-inner { border-color: var(--border); }
 
   /* Optional exercise elements */
   .opt-sep-label {

@@ -1186,8 +1186,9 @@ function renderChart(repopulate = true) {
   }));
 
   svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
-  svgEl.setAttribute('width', W);
+  svgEl.setAttribute('width', '100%');
   svgEl.setAttribute('height', H);
+  svgEl.setAttribute('preserveAspectRatio', 'none');
 
   svgEl.innerHTML = `
     <defs>
@@ -1264,8 +1265,8 @@ function attachChartTooltips(svgEl) {
       const wrapRect = wrap.getBoundingClientRect();
       const cx = parseFloat(dot.getAttribute('cx'));
       const cy = parseFloat(dot.getAttribute('cy'));
-      const scaleX = rect.width / (parseFloat(svgEl.getAttribute('width')) || rect.width);
-      const scaleY = rect.height / (parseFloat(svgEl.getAttribute('height')) || rect.height);
+      const scaleX = rect.width / (svgEl.viewBox.baseVal.width || rect.width);
+      const scaleY = rect.height / (svgEl.viewBox.baseVal.height || rect.height);
 
       tooltip.style.left = (cx * scaleX + rect.left - wrapRect.left) + 'px';
       tooltip.style.top  = (cy * scaleY + rect.top  - wrapRect.top)  + 'px';
