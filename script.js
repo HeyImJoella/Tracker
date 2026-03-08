@@ -10,7 +10,7 @@ const WORKOUTS = {
   push: {
     name: 'Push',
     exercises: [
-      { name: 'Incline Bench Press', key: 'push-incline',  reps: '3x10', kg: 12,  type: 'Compound',  target: 'Chest'    },
+      { name: 'Bench Press',         key: 'push-incline',  reps: '3x10', kg: 12,  type: 'Compound',  target: 'Chest'    },
       { name: 'Shoulder Press',      key: 'push-press',    reps: '3x10', kg: 8,   type: 'Compound',  target: 'Shoulder' },
       { name: 'Incline Fly',         key: 'push-fly',      reps: '3x10', kg: 10,  type: 'Isolation', target: 'Chest'    },
       { name: 'Lateral Raises',      key: 'push-lateral',  reps: '3x10', kg: 6,   type: 'Isolation', target: 'Shoulder' },
@@ -40,7 +40,6 @@ const WORKOUTS = {
 };
 
 const EXERCISE_LINKS = {
-  'Incline Bench Press':  'https://strengthlevel.com/strength-standards/incline-dumbbell-press/kg',
   'Shoulder Press':       'https://strengthlevel.com/strength-standards/dumbbell-shoulder-press/kg',
   'Incline Fly':          'https://strengthlevel.com/strength-standards/incline-dumbbell-fly/kg',
   'Lateral Raises':       'https://strengthlevel.com/strength-standards/lateral-raise/kg',
@@ -160,11 +159,23 @@ let optionalSkipped = {};
 // In-session added exercises: { name, key, reps, kg, type, target }
 let sessionAddedExercises = [];
 
+// History workout-type filter
+let currentTypeFilter = 'all';
+
 // ==============================================
 // INIT
 // ==============================================
 document.addEventListener('DOMContentLoaded', () => {
   loadInputValues();
+  // Migrate stored history: Incline Bench Press → Bench Press
+  (function() {
+    const hist = getHistory();
+    let dirty = false;
+    hist.forEach(s => s.exercises.forEach(ex => {
+      if (ex.exercise === 'Incline Bench Press') { ex.exercise = 'Bench Press'; dirty = true; }
+    }));
+    if (dirty) saveHistory(hist);
+  })();
   setupInputListeners();
   renderWorkoutTabs(); // build tab row (standard + custom + New)
   renderWorkout();   // also calls renderTimerBar() internally
@@ -864,6 +875,14 @@ function renderProgStatPills() {
   ].join('');
 }
 
+function filterByWorkoutType(type) {
+  currentTypeFilter = type;
+  document.querySelectorAll('.type-chip').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.type === type);
+  });
+  renderHistory();
+}
+
 function renderHistory() {
   const container = document.getElementById('history-content');
   if (!container) return;
@@ -889,6 +908,11 @@ function renderHistory() {
   });
 
   filtered.sort((a, b) => b.timestamp - a.timestamp);
+
+  // Workout-type filter (Push / Pull / Legs chips)
+  if (currentTypeFilter !== 'all') {
+    filtered = filtered.filter(s => s.workoutId === currentTypeFilter);
+  }
 
   // ── Option B: compact table when a specific exercise is filtered ──
   if (exFilter !== 'all') {
@@ -981,18 +1005,16 @@ function renderHistory() {
       const exerciseRows = relevantExercises.map(ex => {
         const isPR = isPersonalRecord(ex.exercise, ex.weight, history, session.timestamp);
         return `
-          <div class="hist-ex-row ${isPR ? 'is-pr' : ''}">
-            <span class="hist-ex-name">${ex.exercise}</span>
-            <div class="hist-ex-stats">
-              <span class="hist-reps">${ex.reps}</span>
-              <span class="hist-weight"><strong>${ex.weight}</strong><span class="unit"> kg</span></span>
-              ${isPR ? '<span class="pr-star">PR</span>' : ''}
-            </div>
-          </div>
+          <tr class="${isPR ? 'ex-table-pr' : ''}">
+            <td class="ex-table-date">${ex.exercise}</td>
+            <td class="ex-table-reps">${ex.reps}</td>
+            <td class="ex-table-weight"><strong>${ex.weight}</strong><span class="unit"> kg</span></td>
+            <td class="ex-table-badge">${isPR ? '<span class="pr-star">PR</span>' : ''}</td>
+          </tr>
         `;
       }).join('');
 
-      const openClass = '';
+      const openClass = ' open';
 
       sessionHTMLs.push(`
         <div class="hist-entry${openClass}" onclick="toggleSession(this)">
@@ -1009,7 +1031,7 @@ function renderHistory() {
             </div>
           </div>
           <div class="hist-exercises">
-            ${exerciseRows}
+            <table class="ex-table"><tbody>${exerciseRows}</tbody></table>
           </div>
         </div>
       `);
@@ -1126,7 +1148,7 @@ function renderChart(repopulate = true) {
 
   const W = chartWrap.offsetWidth || 600;
   const H = chartWrap.offsetHeight || 380;
-  const PAD = { top: 36, right: 20, bottom: 52, left: 46 };
+  const PAD = { top: 36, right: 28, bottom: 52, left: 34 };
   const iW = W - PAD.left - PAD.right;
   const iH = H - PAD.top - PAD.bottom;
 

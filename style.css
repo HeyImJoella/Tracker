@@ -133,7 +133,7 @@ input, button, select, textarea { font-family: inherit; }
 
 .logo-name {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: -0.01em;
   color: var(--text);
 }
@@ -603,25 +603,29 @@ input, button, select, textarea { font-family: inherit; }
   overflow: hidden;
 }
 
-/* Desktop: progression page fills full height and width */
+/* Desktop: progression page = full-viewport dashboard, no page scroll */
 @media (min-width: 769px) {
   #view-progression {
-    padding-bottom: 32px;
+    padding-bottom: 0;
     max-width: none;
     width: 100%;
+    height: 96dvh;          /* dynamic vh — shrinks for browser chrome */
+    max-height: 96dvh;
+    overflow: hidden;
   }
   #view-progression.active {
     display: flex;
     flex-direction: column;
-    flex: 1;
   }
   #view-progression .prog-layout {
     flex: 1;
     align-items: stretch;
+    min-height: 0;
   }
+  #view-progression .prog-chart-col,
   #view-progression .prog-history-col {
     overflow-y: auto;
-    max-height: calc(100vh - 120px);
+    min-height: 0;            /* allow flex children to shrink below content */
   }
 }
 
@@ -935,23 +939,23 @@ table.exercise-table {
   .prog-layout { grid-template-columns: 1fr; }
 }
 
-/* Chart column — sticky while history scrolls past */
+/* Chart column — fills grid cell height */
 .prog-chart-col {
   padding-bottom: 16px;
-  position: sticky;
-  top: 20px;
-  align-self: start;
+  display: flex;
+  flex-direction: column;
 }
 
 /* History column — expands fully, no height cap */
 .prog-history-col {
   display: flex;
   flex-direction: column;
+  padding: 0;  /* remove card padding; children handle their own */
 }
 
 /* Move danger row inside the history card */
 .prog-history-col .danger-row {
-  padding: 8px 0 4px;
+  padding: 8px 28px 16px;
   border-top: 1px solid var(--border);
   margin-top: 4px;
 }
@@ -959,15 +963,25 @@ table.exercise-table {
 /* ==============================================
    PROGRESSION CHART
 ============================================== */
-.chart-card { padding-bottom: 28px; }
+.chart-card {
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 28px;
+}
+.chart-card .card-head {
+  padding-left: 28px;
+  padding-right: 28px;
+}
 
 #chart-wrap {
   position: relative;
-  min-height: 380px;
+  min-height: 200px;
+  flex: 1;
   width: 100%;
 }
 
 #prog-chart { display: block; }
+#prog-chart text { fill: var(--text-dim); }
 
 .chart-empty {
   position: absolute;
@@ -1025,22 +1039,48 @@ table.exercise-table {
   border-color: var(--accent);
 }
 
-.history-filters {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  align-items: center;
+/* Sticky header wrapper */
+.history-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--card);
+  padding: 24px 28px 12px;
+  border-bottom: 1px solid var(--border);
 }
 
 .history-head {
-  align-items: flex-start;
-  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
-/* In the two-column layout — title + filters on one row */
-.prog-history-col .history-head { flex-direction: row; align-items: center; }
-.prog-history-col .history-filters { flex-wrap: nowrap; }
+.workout-type-chips {
+  display: flex;
+  gap: 6px;
+}
+.type-chip {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.type-chip:hover {
+  border-color: var(--border-hover);
+  color: var(--text);
+}
+.type-chip.active {
+  background: var(--text);
+  color: var(--card);
+  border-color: var(--text);
+}
 
 @media (min-width: 600px) {
   .history-head {
@@ -1056,7 +1096,7 @@ table.exercise-table {
 #history-content {
   display: flex;
   flex-direction: column;
-  margin-top: 4px;
+  padding: 4px 28px 0;
 }
 
 /* ---- Month group ---- */
@@ -1069,9 +1109,9 @@ table.exercise-table {
   align-items: baseline;
   justify-content: space-between;
   gap: 10px;
-  padding: 18px 2px 9px;
+  padding: 10px 2px 9px;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 6px;
+  margin-bottom: 0;
 }
 
 .month-label {
@@ -1088,21 +1128,22 @@ table.exercise-table {
   white-space: nowrap;
 }
 
-/* ---- Session row — editorial list style ---- */
+/* ---- Session row — minimal list style ---- */
 .hist-entry {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 16px;
-  margin-bottom: 6px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  padding: 16px 0;
+  margin-bottom: 0;
   cursor: pointer;
   user-select: none;
-  transition: border-color 0.2s, background 0.15s;
+  transition: background 0.15s;
 }
 
-.hist-entry:last-child { border-bottom: none; margin-bottom: 0; }
-.hist-entry:hover { border-color: var(--border-hover); background: rgba(255,255,255,0.045); }
-.hist-entry.open  { border-color: var(--border-hover); background: rgba(255,255,255,0.04); }
+.hist-entry:last-child { border-bottom: none; }
+.hist-entry:hover { background: rgba(128,128,128,0.04); }
+.hist-entry.open  { background: transparent; }
 
 .hist-head {
   display: flex;
@@ -1115,8 +1156,8 @@ table.exercise-table {
 }
 
 .hist-entry.open .hist-head {
-  border-bottom-color: var(--border);
-  padding-bottom: 10px;
+  border-bottom-color: transparent;
+  padding-bottom: 0;
 }
 
 .hist-head-left {
@@ -1172,13 +1213,14 @@ table.exercise-table {
 
 /* ---- Exercise detail panel (collapse animation) ---- */
 .hist-exercises {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  display: block;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease, padding-top 0.25s ease;
   padding-top: 0;
+}
+.hist-exercises .ex-table {
+  width: 100%;
 }
 
 .hist-entry.open .hist-exercises {
@@ -1558,10 +1600,9 @@ table.exercise-table {
     width: 100%;
   }
 
-  /* Reset sticky chart — not useful when stacked in single column */
+  /* Reset chart column for stacked mobile layout */
   .prog-chart-col {
-    position: static;
-    top: auto;
+    min-height: 300px;
   }
 }
 
