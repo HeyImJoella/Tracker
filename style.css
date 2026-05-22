@@ -3,6 +3,11 @@
    Inspired by NovaSaaS Figma Design
 ============================================== */
 
+/* Disable double-tap zoom (rapid +/- taps); pinch zoom still works */
+html {
+  touch-action: manipulation;
+}
+
 /* ---- Variables ---- */
 :root {
   /* === BRIDGE: map local vars → MCP Design System tokens === */
@@ -761,6 +766,7 @@ table.exercise-table {
   flex-shrink: 0;
   cursor: pointer;
   user-select: none;
+  touch-action: manipulation;
 }
 
 .stp-btn:hover:not(:disabled) {
@@ -2037,6 +2043,7 @@ table.exercise-table {
   flex-shrink: 0;
   transition: border-color 0.15s, background 0.15s, transform 0.1s;
   position: relative;
+  touch-action: manipulation;
 }
 
 .dot-num {
